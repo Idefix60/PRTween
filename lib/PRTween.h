@@ -316,6 +316,7 @@ typedef NSUInteger PRTweenHasTweenedObserverOptions;
     NSMutableArray *expiredTweenOperations;
     NSTimer        *timer;
     CGFloat timeOffset;
+    CFTimeInterval lastAbsoluteTime;
 
     PRTweenTimingFunction defaultTimingFunction;
     BOOL                  useBuiltInAnimationsWhenPossible;

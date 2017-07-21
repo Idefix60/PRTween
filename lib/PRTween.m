@@ -854,6 +854,7 @@ static NSArray *animationSelectorsForUIView        = nil;
         expiredTweenOperations = [[NSMutableArray alloc] init];
         timeOffset             = 0;
         if (timer == nil) {
+            lastAbsoluteTime = 0;
             timer = [NSTimer scheduledTimerWithTimeInterval:kPRTweenFramerate target:self selector:@selector(update) userInfo:nil repeats:YES];
             [[NSRunLoop mainRunLoop] addTimer:timer forMode:NSRunLoopCommonModes];
         }
@@ -1077,7 +1078,8 @@ static NSArray *animationSelectorsForUIView        = nil;
 }
 
 - (void) update {
-    timeOffset += kPRTweenFramerate;
+    timeOffset += (lastAbsoluteTime == 0) ? kPRTweenFramerate : (CFAbsoluteTimeGetCurrent() - lastAbsoluteTime);
+    lastAbsoluteTime = CFAbsoluteTimeGetCurrent();
 
     for (PRTweenOperation *tweenOperation in tweenOperations) {
 
