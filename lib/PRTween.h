@@ -140,6 +140,7 @@ typedef NSUInteger PRTweenHasTweenedObserverOptions;
     BOOL canUseBuiltAnimation;
 }
 
+@property(nonatomic) BOOL animationFinished;
 @property(nonatomic, retain) PRTweenPeriod *period;
 @property(nonatomic, retain) NSObject      *target;
 @property(nonatomic) SEL                           updateSelector;
